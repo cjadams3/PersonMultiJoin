@@ -3,16 +3,40 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add a Person</title>
+<script type = "text/javascript">
+function ValidateThis() {
+	
+	var y = document.getElementById("age").value;
+	var reg = /^[a-zA-Z]+$/;
+	var a = document.getElementById("name").value;
+	var b = document.getElementById("gender").value;
+	
+	if (isNaN(y)) {
+		alert("Invalid Age");
+		return false;
+	}
+	else if (!reg.test(a)) {
+		alert("Invalid Name");
+		return false;
+	}
+	else if (!reg.test(b)) {
+		alert("Invalid Gender");
+		return false;
+	}
+	return true;
+}
+</script>
 </head>
 <body>
-	<form method="post" action="addPersonServlet">
+	<form name="addForm" method="post" action="addPersonServlet" onsubmit="return ValidateThis()">
 		<label for="name">Name</label>
-		<input type="text" name="name"><br/>
+		<input type="text" id="name" name="name" required="required"><br/>
 		<label for="age">Age</label>
-		<input type="text" name="age"><br/>
+		<input type="text" id="age" name="age" required="required"><br/>
 		<label for="gender">Gender</label>
-		<input type="text" name="gender"><br/>
-		<input type="submit" value="Add Item"/>
+		<input type="text" id="gender" name="gender" required="required"><br/>
+		<input type="submit" value="Add Item"/><br/>
 	</form>
+	<a href="index.jsp">Back to Main Menu</a>
 </body>
 </html>
